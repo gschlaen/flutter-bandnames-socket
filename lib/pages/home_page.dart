@@ -63,18 +63,20 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          _BandsPieChart(bands: bands),
-          const SizedBox(height: 20),
-          Expanded(
-            child: ListView.builder(
-              itemCount: bands.length,
-              itemBuilder: (BuildContext context, int index) => _BandTile(band: bands[index]),
+      body: bands.isEmpty
+          ? const SizedBox()
+          : Column(
+              children: [
+                _BandsPieChart(bands: bands),
+                const SizedBox(height: 20),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: bands.length,
+                    itemBuilder: (BuildContext context, int index) => _BandTile(band: bands[index]),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         elevation: 1,
